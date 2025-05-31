@@ -264,6 +264,7 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
+spawn-at-startup "dunest"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 // wallpapers and backdrops
