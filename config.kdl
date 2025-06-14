@@ -269,8 +269,8 @@ spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 // wallpapers and backdrops
 spawn-at-startup "swww-daemon"
-spawn-at-startup "swww" "img" "/home/litfill/Pictures/Wallpapers/purple-woman-blured.jpeg"
-spawn-at-startup "swaybg" "-i" "/home/litfill/Pictures/Wallpapers/purple-woman.jpeg" "-m" "fit" "-c" "#181818"
+spawn-at-startup "swww" "img" "/home/litfill/Gambar/ojou-gazing-blue-sky.jpg"
+spawn-at-startup "swaybg" "-i" "/home/litfill/Gambar/cute-ojou.jpg" "-m" "fill" "-c" "#181818"
 layer-rule {
     match namespace="^swww-daemon$"
     place-within-backdrop true
