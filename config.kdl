@@ -624,4 +624,11 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     /-Mod+Shift+P { power-off-monitors; }
+
+    // brightness controls
+    Ctrl+F11 { spawn "brightnessctl" "set" "10%-"; }
+    Ctrl+F12 { spawn "brightnessctl" "set" "10%+"; }
+
+    Ctrl+Shift+F11 { spawn "brightnessctl" "set" "2%-"; }
+    Ctrl+Shift+F12 { spawn "brightnessctl" "set" "2%+"; }
 }
