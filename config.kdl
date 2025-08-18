@@ -76,18 +76,25 @@ layout {
     struts { }
 }
 
+spawn-at-startup "bash" "-c" "waybar -c $HOME/.config/niri/waybar/top.jsonc"
+spawn-at-startup "bash" "-c" "waybar -c $HOME/.config/niri/waybar/bot.jsonc"
 
-spawn-at-startup "waybar"
 spawn-at-startup "dunest"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 spawn-at-startup "swww-daemon"
-spawn-at-startup "swww" "img" "/home/litfill/Gambar/ojou-gazing-blue-sky.jpg"
-spawn-at-startup "swaybg" "-i" "/home/litfill/Gambar/cute-ojou.jpg" "-m" "fill" "-c" "#181818"
+spawn-at-startup "swww" "img" "$HOME/.config/niri/wallpapers/ojou-gazing-blue-sky.jpg"
+spawn-at-startup "swaybg" "-i/home/litfill/.config/niri/wallpapers/cute-ojou.jpg" "-mfill" "-c#181818"
+// ^^ TODO: swaybg doesn't want a '$HOME'
+
 layer-rule {
     match namespace="^swww-daemon$"
     place-within-backdrop true
 }
+
+// dark theme at night
+spawn-at-startup "bash" "-c" "'echo export DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS > ~/.dbus-session'"
+spawn-at-startup "bash" "-c" "$HOME/.config/niri/scripts/set-theme.sh"
 
 prefer-no-csd
 
