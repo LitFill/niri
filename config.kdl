@@ -288,9 +288,12 @@ binds {
 
     Mod+Ctrl+F { expand-column-to-available-width; }
 
-    Mod+C { center-column; }
-
+    Mod+C      { center-column;          }
     Mod+Ctrl+C { center-visible-columns; }
+
+    Mod+Shift+C hotkey-overlay-title="Clipboard History" {
+        spawn "bash" "-c" "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy" ;
+    }
 
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
