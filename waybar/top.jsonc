@@ -1,0 +1,109 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 4,
+    "modules-left": [
+        "network",
+        "tray",
+        "custom/bluetooth",
+    ],
+    "modules-center": [
+        "idle_inhibitor",
+        "clock",
+    ],
+    "modules-right": [
+        "cpu",
+        "pulseaudio",
+        "memory",
+        "battery"
+    ],
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "memory": {
+        "format": " {}%"
+    },
+    "network": {
+        "format-wifi": " {essid}",
+        "format-ethernet": "󰈀 {ifname}",
+        "format-disconnected": "Disconnected",
+        "tooltip-format-wifi": " {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
+        "tooltip-format-ethernet": "󰈀 {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 50,
+        "on-click": "alacritty --title nmtui -e nmtui connect"
+    },
+    "sway/language": {
+        "format": "{shortDescription}"
+    },
+    "cpu": {
+        "format": " {usage}%",
+        "interval": 10,
+        "tooltip": false
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-muted": "✖",
+        "format-icons": {
+            "default": [
+                "_",
+                "=",
+                "≡"
+            ]
+        },
+        "scroll-step": 1,
+        "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 0.01+",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ 0.01-"
+    },
+    "clock": {
+        "format": "{:%A, %d %B %Y %H:%M}",
+        "interval": 1,
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "today-format": "<span color='#7645AD'><b><u>{}</u></b></span>",
+        "format-calendar": "<span color='#aeaeae'><b>{}</b></span>",
+        "format-calendar-weeks": "<span color='#aeaeae'><b>W{:%V}</b></span>",
+        "format-calendar-weekdays": "<span color='#aeaeae'><b>{}</b></span>",
+        "format-alt": "{:%d %B %Y}"
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "OK",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "custom/bluetooth": {
+        "format": "{icon}",
+        "return-type": "json",
+        "interval": 3,
+        "exec": "/home/litfill/.config/waybar/gemini-bluetooth.sh status",
+        "on-click": "/home/litfill/.config/waybar/gemini-bluetooth.sh toggle",
+        "format-icons": {
+            "on": "bluetooth",
+            "off": "bluetooth-off"
+        }
+    }
+}

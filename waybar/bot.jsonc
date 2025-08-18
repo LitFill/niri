@@ -1,0 +1,74 @@
+{
+    "layer": "bottom",
+    "position": "bottom",
+    "height": 30,
+    "spacing": 4,
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode",
+        "sway/scratchpad",
+        "niri/workspaces",
+        "custom/media"
+    ],
+    "modules-center": [
+        "niri/window"
+    ],
+    "modules-right": [],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{name} ∷ {icon} ",
+        "format-icons": {
+            "1": "۱",
+            "2": "۲",
+            "3": "۳",
+            "4": "۴",
+            "5": "۵",
+            "6": "۶",
+            "7": "۷",
+            "8": "۸",
+            "9": "۹",
+            "10": "۱۰",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": [
+            "",
+            ""
+        ],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "niri/workspaces": {
+        "disable-click": true,
+        "format": "{icon}",
+        "format-icons": {
+            "active": "",
+            "default": ""
+        }
+    },
+    "niri/window": {
+        "icon": true,
+        "icon-size": 14,
+    },
+    "custom/media": {
+        "format": "{icon} {text}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+    }
+}
