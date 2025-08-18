@@ -312,13 +312,19 @@ binds {
 
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
-    Mod+Shift+E { quit; }
+    Mod+Shift+E hotkey-overlay-title="Power Menu" { spawn "bash" "-c" "$HOME/.config/niri/scripts/power-menu.sh"; }
     Ctrl+Alt+Delete { quit; }
 
     /-Mod+Shift+P { power-off-monitors; }
 
-    Ctrl+F12 { spawn "bash" "-c" r#"brightnessctl set 10%+ && ./notify-send.sh "brightness-up" "Brightness" "$(brightnessctl get)""# ; }
+    Ctrl+F11 { spawn "bash" "-c" r#"brightnessctl set 10%- && $HOME/.config/niri/scripts/notify-send.sh "brightness-down" "Brightness" "$(brightnessctl get)""# ; }
+    Ctrl+F12 { spawn "bash" "-c" r#"brightnessctl set 10%+ && $HOME/.config/niri/scripts/notify-send.sh "brightness-up" "Brightness" "$(brightnessctl get)""# ; }
 
-    Ctrl+Shift+F11 { spawn "brightnessctl" "set" "2%-"; }
-    Ctrl+Shift+F12 { spawn "brightnessctl" "set" "2%+"; }
+    Ctrl+Shift+F11 { spawn "bash" "-c" r#"brightnessctl set 2%- && $HOME/.config/niri/scripts/notify-send.sh "brightness-down" "Brightness" "$(brightnessctl get)""# ; }
+    Ctrl+Shift+F12 { spawn "bash" "-c" r#"brightnessctl set 2%+ && $HOME/.config/niri/scripts/notify-send.sh "brightness-up" "Brightness" "$(brightnessctl get)""# ; }
+
+    /// Audio controls
+    Ctrl+F1 { spawn "bash" "-c" r#"wpctl set-mute @DEFAULT_SINK@ toggle  && $HOME/.config/niri/scripts/notify-send.sh "audio-volume-muted" "Volume" "$(wpctl get-volume @DEFAULT_SINK@)""# ; }
+    Ctrl+F2 { spawn "bash" "-c" r#"wpctl set-volume @DEFAULT_SINK@ 0.05- && $HOME/.config/niri/scripts/notify-send.sh "audio-volume-low" "Volume" "$(wpctl get-volume @DEFAULT_SINK@)""# ; }
+    Ctrl+F3 { spawn "bash" "-c" r#"wpctl set-volume @DEFAULT_SINK@ 0.05+ && $HOME/.config/niri/scripts/notify-send.sh "audio-volume-high" "Volume" "$(wpctl get-volume @DEFAULT_SINK@)""# ; }
 }
