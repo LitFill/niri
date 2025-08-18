@@ -155,16 +155,15 @@ binds {
     }
 
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" {
-        spawn "fuzzel";
+        spawn "fuzzel" "--use-bold" "--counter" "--placeholder=program" "--lines=20";
     }
 
     Shift+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" {
-        spawn "swaylock";
+        // spawn "/home/litfill/.config/swaylock/lock.sh" ;
+        spawn "swaylock" "--screenshots";
     }
 
-    Mod+B hotkey-overlay-title="Open Browser: Zen" {
-        spawn "/home/litfill/.local/bin/zen";
-    }
+    Mod+B hotkey-overlay-title="Open Browser: Zen" { spawn "zen-browser"; }
 
     XF86AudioRaiseVolume allow-when-locked=true {
         spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"
