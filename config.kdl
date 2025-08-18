@@ -290,8 +290,7 @@ binds {
 
     /-Mod+Shift+P { power-off-monitors; }
 
-    Ctrl+F11 { spawn "brightnessctl" "set" "10%-"; }
-    Ctrl+F12 { spawn "brightnessctl" "set" "10%+"; }
+    Ctrl+F12 { spawn "bash" "-c" r#"brightnessctl set 10%+ && ./notify-send.sh "brightness-up" "Brightness" "$(brightnessctl get)""# ; }
 
     Ctrl+Shift+F11 { spawn "brightnessctl" "set" "2%-"; }
     Ctrl+Shift+F12 { spawn "brightnessctl" "set" "2%+"; }
