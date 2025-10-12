@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/.dbus-session
+source ./.dbus-session
 
 # Ambil jam saat ini dalam format 24 jam
 current_hour=$(date +%H)
