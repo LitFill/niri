@@ -1,12 +1,17 @@
 input {
     keyboard {
-        xkb { }
+        xkb {
+            layout "id,ara"
+            options "compose:ralt,grp:alts_toggle"
+        }
         numlock
     }
 
     touchpad {
         tap
         natural-scroll
+        // scroll-method "edge"
+        dwt
     }
 
     mouse {
