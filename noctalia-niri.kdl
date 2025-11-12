@@ -80,7 +80,15 @@ layout {
     }
 
     struts { }
-    background-color "#003300"
+    /-background-color "#003300"
+    background-color "transparent"
+
+}
+
+overview {
+    workspace-shadow {
+        off
+    }
 }
 
 spawn-sh-at-startup "qs -c noctalia-shell"
@@ -89,6 +97,8 @@ spawn-at-startup    "dunst"
 spawn-sh-at-startup "killall dunst"
 spawn-at-startup    "dunst"
 spawn-sh-at-startup "wl-paste --watch cliphist store"
+// spawn-at-startup    "swww-daemon"
+// spawn-sh-at-startup "swww img /home/litfill/Gambar/wallpaper/ojou-gazing-blue-sky.jpg"
 
 layer-rule {
     match namespace="^swww-daemon$"
@@ -141,8 +151,13 @@ window-rule {
     clip-to-geometry true
 }
 
-layer-rule {
+/-layer-rule {
     match namespace="^quickshell-overview$"
+    place-within-backdrop true
+}
+
+layer-rule {
+    match namespace="^noctalia-wallpaper*"
     place-within-backdrop true
 }
 
@@ -162,8 +177,12 @@ binds {
         spawn-sh "fuzzel --use-bold --counter --placeholder=program --lines=20";
     }
 
-    Shift+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" {
-        spawn-sh "qs -c noctalia-shell ipc call lockScreen toggle" ;
+    Shift+Alt+L hotkey-overlay-title="Lock the Screen" {
+        spawn-sh "qs -c noctalia-shell ipc call lockScreen lock" ;
+    }
+
+    Ctrl+F9 /-hotkey-overlay-title="Lock the Screen and Suspend" {
+        spawn-sh "qs -c noctalia-shell ipc call sessionMenu lockAndSuspend" ;
     }
 
     Mod+B hotkey-overlay-title="Open Browser: Zen" { spawn "zen-browser"; }
@@ -294,7 +313,7 @@ binds {
     Mod+C      { center-column;          }
     Mod+Ctrl+C { center-visible-columns; }
 
-    Mod+Shift+C hotkey-overlay-title="Clipboard History" {
+    /-Mod+Shift+C hotkey-overlay-title="Clipboard History" {
         spawn-sh "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy" ;
     }
 
@@ -358,8 +377,21 @@ binds {
     Mod+Alt+V hotkey-overlay-title="Launcher Clipboard" {
         spawn-sh "qs -c noctalia-shell ipc call launcher clipboard" ;
     }
+
     Mod+Alt+C hotkey-overlay-title="Launcher Calculator" {
         spawn-sh "qs -c noctalia-shell ipc call launcher calculator";
+    }
+
+    Mod+N hotkey-overlay-title="Toggle Notifications" {
+        spawn-sh "qs -c noctalia-shell ipc call notifications toggleHistory";
+    }
+
+    Mod+Ctrl+N /-hotkey-overlay-title="Clear Notifications" {
+        spawn-sh "qs -c noctalia-shell ipc call notifications clear";
+    }
+
+    Mod+Shift+D {
+        spawn-sh "qs -c noctalia-shell ipc call darkMode toggle";
     }
 
     // bar
