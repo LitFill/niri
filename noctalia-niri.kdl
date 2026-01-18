@@ -1,3 +1,5 @@
+include "noctalia.kdl"
+
 input {
     keyboard {
         xkb {
@@ -56,11 +58,11 @@ layout {
     default-column-width {}
 
     focus-ring {
-        off
+        /-off
         width 3
-        active-color /-"#7fc8ff" /-"rgba(70, 24, 24, 50)" "#aa203b"
+        /-active-color /-"#7fc8ff" /-"rgba(70, 24, 24, 50)" "#aa203b"
         /-active-color "#ffc87f"
-        inactive-color "#505050"
+        /-inactive-color "#505050"
     }
 
     border {
@@ -76,11 +78,11 @@ layout {
         softness 30
         spread 5
         offset x=0 y=5
-        color "#0007"
+        /-color "#0007"
     }
 
     struts { }
-    /-background-color "#003300"
+    /-background-color "#00330018"
     background-color "transparent"
 
 }
@@ -93,14 +95,14 @@ overview {
 
 spawn-sh-at-startup "qs -c noctalia-shell"
 
-spawn-at-startup    "dunst"
-spawn-sh-at-startup "killall dunst"
-spawn-at-startup    "dunst"
+/-spawn-at-startup    "dunst"
+/-spawn-sh-at-startup "killall dunst"
+/-spawn-at-startup    "dunst"
 spawn-sh-at-startup "wl-paste --watch cliphist store"
 // spawn-at-startup    "swww-daemon"
 // spawn-sh-at-startup "swww img /home/litfill/Gambar/wallpaper/ojou-gazing-blue-sky.jpg"
 
-layer-rule {
+/-layer-rule {
     match namespace="^swww-daemon$"
     place-within-backdrop true
 }
@@ -113,7 +115,7 @@ animations {
     slowdown 1.5
 }
 
-window-rule {
+/-window-rule {
     match app-id=r#"wezterm"#
     default-column-width {}
 }
@@ -159,6 +161,36 @@ window-rule {
 layer-rule {
     match namespace="^noctalia-wallpaper*"
     place-within-backdrop true
+}
+
+// Konfigurasi khusus Steam untuk Niri
+window-rule {
+    // Match aplikasi Steam
+    match app-id="^steam$"
+
+    // Opsional: Buat Steam sedikit transparan jika tidak fokus (estetika)
+    // opacity 0.95
+
+    // Mencegah masalah scaling/blur pada XWayland (opsional)
+    // block-out-from "screen-capture"
+}
+
+// Rule agar Pop-up, Friends List, dan Settings jadi Floating
+// Steam Library tetap Tiling (lebih enak discroll di Niri), sisanya floating.
+window-rule {
+    match app-id="^steam$" title="^Friends List$"
+    match app-id="^steam$" title="Steam Settings"
+    match app-id="^steam$" title="News"
+    match app-id="^steam$" title=".* - Chat"
+
+    open-floating true
+}
+
+// Rule untuk Game Launcher (misal: Cyberpunk launcher, LariLauncher, dll)
+// Kebanyakan game berjalan via Proton/Wine sebagai XWayland
+/-window-rule {
+    match is-focused=false at-startup=true
+    open-floating true
 }
 
 debug {
@@ -386,11 +418,11 @@ binds {
         spawn-sh "qs -c noctalia-shell ipc call notifications toggleHistory";
     }
 
-    Mod+Ctrl+N /-hotkey-overlay-title="Clear Notifications" {
+    Mod+Ctrl+N hotkey-overlay-title="Clear Notifications" {
         spawn-sh "qs -c noctalia-shell ipc call notifications clear";
     }
 
-    Mod+Shift+D {
+    Mod+Shift+D hotkey-overlay-title="Toggle Dark Mode" {
         spawn-sh "qs -c noctalia-shell ipc call darkMode toggle";
     }
 
@@ -399,3 +431,5 @@ binds {
         spawn-sh "qs -c noctalia-shell ipc call bar toggle";
     }
 }
+
+/-include "./noctalia.kdl"
